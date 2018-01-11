@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>big-banners</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <name>${project.artifactId}</name>
     <description>Create ASCII art banner texts.</description>
@@ -26,7 +26,7 @@
         <connection>scm:git:https://github.com/nidi3/big-banners</connection>
         <developerConnection>scm:git:https://github.com/nidi3/big-banners</developerConnection>
         <url>https://github.com/nidi3/big-banners</url>
-        <tag>big-banners-0.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
