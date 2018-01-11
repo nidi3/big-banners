@@ -18,6 +18,7 @@ package guru.nidi.bigbanners;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.HashSet;
 
 import static java.util.Arrays.asList;
@@ -25,19 +26,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JavaTest {
     @Test
-    @Disabled
+//    @Disabled
     void demo() {
         for (String font : BigBanners.fonts()) {
             try {
                 System.out.println(font);
-                System.out.println(BigBanners.render(font, "Big Banners"));
+                System.out.println(BigBanners.render(font, "Easter!"));
             } catch (Exception e) {
             }
         }
     }
 
     @Test
-    void render() {
+    void render() throws IOException {
         assertEquals("" +
                         "    _     ___    ___ \n" +
                         "   /_\\   | _ )  / __|\n" +

@@ -34,6 +34,7 @@ fun fonts() = categories().flatMap { c -> entries(c).flatMap { e -> fonts(c, e) 
 
 fun proposals(name: String, list: Set<String>, count: Int) = list.sortedBy { levenshtein(it, name) }.take(count)
 
+@Throws(IOException::class)
 fun render(font: String, text: String) =
         cl.getResourceAsStream("jave/$font.flf").use {
             if (it == null) {
