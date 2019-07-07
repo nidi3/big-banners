@@ -19,6 +19,7 @@ package guru.nidi.bigbanners
 
 import com.github.lalyos.jfiglet.FigletFont
 import java.io.IOException
+import kotlin.math.min
 
 private val cl = Thread.currentThread().contextClassLoader!!
 
@@ -40,15 +41,15 @@ fun render(font: String, text: String) =
             if (it == null) {
                 throw IOException("font $font not found.")
             }
-            FigletFont.convertOneLine(it, text)
+            FigletFont.convertOneLine(it, text)!!
         }
 
 private fun readCategories(): Map<String, Map<String, Set<String>>> =
-        cl.getResourceAsStream("jave/categoriestree.txt").use {
+        cl.getResourceAsStream("jave/categoriestree.txt")!!.use { categories ->
             val res = mutableMapOf<String, MutableMap<String, MutableSet<String>>>()
             var category: MutableMap<String, MutableSet<String>>?
             var entries: MutableSet<String>? = null
-            it.reader().readLines()
+            categories.reader().readLines()
                     .filter { it.isNotBlank() && !it.startsWith("#") }
                     .forEach { line ->
                         val catMatch = Regex("""\[(.*?)]\{.*?}""").matchEntire(line)
@@ -73,10 +74,7 @@ private fun levenshtein(s1: String, s2: String): Int {
     for (i in 1..s1.length) {
         for (j in 1..s2.length) {
             val u = if (s1[i - 1] == s2[j - 1]) 0 else 1
-            edits[i][j] = Math.min(
-                    edits[i - 1][j] + 1,
-                    Math.min(edits[i][j - 1] + 1, edits[i - 1][j - 1] + u)
-            )
+            edits[i][j] = min(edits[i - 1][j] + 1, min(edits[i][j - 1] + 1, edits[i - 1][j - 1] + u))
         }
     }
     return edits[s1.length][s2.length]

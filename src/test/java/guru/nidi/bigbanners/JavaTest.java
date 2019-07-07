@@ -15,7 +15,6 @@
  */
 package guru.nidi.bigbanners;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -33,6 +32,7 @@ class JavaTest {
                 System.out.println(font);
                 System.out.println(BigBanners.render(font, "Easter!"));
             } catch (Exception e) {
+                //ignore
             }
         }
     }
